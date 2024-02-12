@@ -20,7 +20,9 @@ fetchData()
   .catch((error) => {
     console.log("fetchData() call: data fetch error", error);
   })
-  .finally(console.log("fetchData() call: Finally executed"));
+  .finally(() => {
+    console.log("fetchData() call: Finally executed");
+  });
 
 // async/await way
 const fetchApidata = async () => {
@@ -39,30 +41,33 @@ fetchApidata();
 
 //output
 Run 1)
+fetchData() call: data fetched succcesfully 
+fetchData inside :Data fetched successfully
 fetchData() call: Finally executed
+Async fetchApidata() : Error fetching data: 
+fetchData inside :Data fetching failed
+Async fetchApidata() : Fetch operation completed.
+
+Run 2)
 fetchData() call: data fetch error Error: 
 fetchData inside :Data fetching failed
     at Timeout._onTimeout (/home/runner/javascript/index.js:8:16)
     at listOnTimeout (node:internal/timers:573:17)
     at process.processTimers (node:internal/timers:514:7)
-Async fetchApidata() : Data fetched successfully: 
-fetchData inside :Data fetched successfully
-Async fetchApidata() : Fetch operation completed.
-
-Run 2)
 fetchData() call: Finally executed
-fetchData() call: data fetched succcesfully 
-fetchData inside :Data fetched successfully
-Async fetchApidata() : Data fetched successfully: 
-fetchData inside :Data fetched successfully
+Async fetchApidata() : Error fetching data: 
+fetchData inside :Data fetching failed
 Async fetchApidata() : Fetch operation completed.
 
 Run 3)
-fetchData() call: Finally executed
-fetchData() call: data fetched succcesfully 
-fetchData inside :Data fetched successfully
-Async fetchApidata() : Error fetching data: 
+fetchData() call: data fetch error Error: 
 fetchData inside :Data fetching failed
+    at Timeout._onTimeout (/home/runner/javascript/index.js:8:16)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+fetchData() call: Finally executed
+Async fetchApidata() : Data fetched successfully: 
+fetchData inside :Data fetched successfully
 Async fetchApidata() : Fetch operation completed.
 
 
