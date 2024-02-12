@@ -12,7 +12,7 @@ function fetchData() {
   });
 }
 
-//Nomral promise call using then, catch
+//Normal promise call using then, catch
 fetchData()
   .then((data) => {
     console.log("fetchData() call: data fetched succcesfully", data);
@@ -35,3 +35,57 @@ const fetchApidata = async () => {
 };
 
 fetchApidata();
+
+
+//output
+Run 1)
+fetchData() call: Finally executed
+fetchData() call: data fetch error Error: 
+fetchData inside :Data fetching failed
+    at Timeout._onTimeout (/home/runner/javascript/index.js:8:16)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+Async fetchApidata() : Data fetched successfully: 
+fetchData inside :Data fetched successfully
+Async fetchApidata() : Fetch operation completed.
+
+Run 2)
+fetchData() call: Finally executed
+fetchData() call: data fetched succcesfully 
+fetchData inside :Data fetched successfully
+Async fetchApidata() : Data fetched successfully: 
+fetchData inside :Data fetched successfully
+Async fetchApidata() : Fetch operation completed.
+
+Run 3)
+fetchData() call: Finally executed
+fetchData() call: data fetched succcesfully 
+fetchData inside :Data fetched successfully
+Async fetchApidata() : Error fetching data: 
+fetchData inside :Data fetching failed
+Async fetchApidata() : Fetch operation completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
