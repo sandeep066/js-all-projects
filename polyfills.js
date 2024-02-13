@@ -109,6 +109,50 @@ arguments[3] accesses an undefined value because there is no fourth argument pas
 
 //4)Custom map() function
 
+a)Before Understanding custom map,we need to understand
+i)Callback
+ii)Excess parameters ignored
+Hence below example
+
+//addNumbers callback
+const numbers = [1, 2, 3, 4, 5];
+
+// Callback function to add two numbers
+function addNumbers(num1, num2) {
+  return num1 + num2;
+}
+
+// Function to process each pair of numbers in the array using a callback function
+function processNumberPairs(numbersArray, callback) {
+  const processedResults = [];
+  for (let i = 0; i < numbersArray.length - 1; i++) {
+    processedResults.push(callback(numbersArray[i], numbersArray[i + 1],i,this));
+  }
+  return processedResults;
+}
+
+// Call the processNumberPairs function with the numbers array and addNumbers function as arguments
+const addedResults = processNumberPairs(numbers, addNumbers);
+
+console.log(addedResults); // Output: [3, 5, 7, 9]
+
+/*
+• We have an array of numbers called numbers.
+• We define a function called addNumbers, which takes two numbers
+ as arguments and returns their sum. We define another function called processNumberPairs,
+ which takes an array of numbers and a callback function as arguments. 
+ This function iterates over pairs of numbers in the array (using each number and the one after it), 
+ calls the callback function with each pair of numbers, index and array and collects the results in a new array.
+• Since addNumbers takes only two parameters, remaining excess arguments index and array are ignored  
+  and callback function still gets called with these mismatch parameters
+• We call the processNumberPairs function with the numbers array and the addNumbers function as arguments. 
+  This will add each pair of numbers in the numbers array and return a new array containing the results.
+
+Finally, we log the addedResults array to the console, which contains the sums of each pair of numbers.
+*/
+
+b)custom map implementation using anonymous function without using keyword function
+
 Array.prototype.myMap = function (callback) {
   let temp = [];
   for (let i = 0; i < this.length; i++) {
@@ -119,36 +163,76 @@ Array.prototype.myMap = function (callback) {
 
 const numbers = [1, 2, 3, 4];
 
-const multiplyResult = numbers.myMap((num, i, arr) => {
+const multiplyResult = numbers.myMap((num) => {
   return num * 2;
 });
 
-console.log(multiplyResult); //Array.prototype.myMap = function (callback) {
-  let temp = [];
+console.log(multiplyResult); 
+
+//c)Customer map using normal function definition
+console.log("Customer map using normal function definition");
+
+Array.prototype.mymap = function(callback) {
+  const results = [];
+
   for (let i = 0; i < this.length; i++) {
-    temp.push(callback(this[i], i, this));
+    results.push(callback(this[i], i, this));
   }
-  return temp;
+
+  return results;
 };
 
 const numbers = [1, 2, 3, 4];
 
-const multiplyResult = numbers.myMap((num, i, arr) => {
-  return num * 2;
-});
+function multiplyCallback(num, i, arr) {
+  console.log("Number:", num);
+  console.log("Index:", i);
+  console.log("Array:", arr);
+  return num * 3; // Example operation
+}
 
-console.log(multiplyResult);Array.prototype.myMap = function (callback) {
-  let temp = [];
+const multiplyResults = numbers.mymap(multiplyCallback);
+
+console.log(multiplyResults); // Output: [3, 6, 9, 12]
+
+/*
+• We define a named function multiplyCallback instead of an arrow function.
+• The function multiplyCallback has the same parameters as the arrow function (num, i, arr) => { ... }.
+• Inside multiplyCallback, we log the current num, i, and arr values to the console, just as in the arrow function.
+• We pass multiplyCallback as the callback function to the mymap method.
+The result remains the same as before, with each number in the numbers array being multiplied by 3.
+*/
+
+
+//d) Customer map using an anonymous function directly within the mymap method call
+console.log(
+  "Customer map using an anonymous function directly within the mymap method call",
+);
+Array.prototype.mymap = function(callback) {
+  const results = [];
+
   for (let i = 0; i < this.length; i++) {
-    temp.push(callback(this[i], i, this));
+    results.push(callback(this[i], i, this));
   }
-  return temp;
+
+  return results;
 };
 
 const numbers = [1, 2, 3, 4];
 
-const multiplyResult = numbers.myMap((num, i, arr) => {
-  return num * 2;
+const multiplyResults = numbers.mymap(function(num, i, arr) {
+  console.log("Number:", num);
+  console.log("Index:", i);
+  console.log("Array:", arr);
+  return num * 3; // Example operation
 });
 
-console.log(multiplyResult); //[ 2, 4, 6, 8 ]
+console.log(multiplyResults); // Output: [3, 6, 9, 12]
+
+/*
+• We define an anonymous function directly within the mymap method call.
+• This anonymous function has the same parameters as the previous named function (num, i, arr).
+• Inside the anonymous function, we log the current num, i, and arr values to the console, just as before.
+• We pass this anonymous function as the callback to the mymap method.
+The result remains the same as before, with each number in the numbers array being multiplied by 3.
+*/
