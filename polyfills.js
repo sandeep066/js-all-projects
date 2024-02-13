@@ -107,7 +107,7 @@ arguments[2] accesses the third argument passed to the function (3).
 arguments[3] accesses an undefined value because there is no fourth argument passed to the function
 */
 
-//4)Custom map() function
+4)Custom map() function
 
 a)Before Understanding custom map,we need to understand
 i)Callback
@@ -236,3 +236,24 @@ console.log(multiplyResults); // Output: [3, 6, 9, 12]
 • We pass this anonymous function as the callback to the mymap method.
 The result remains the same as before, with each number in the numbers array being multiplied by 3.
 */
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+5)//Custom filter
+Array.prototype.myFilter = function (func) {
+  let temp = [];
+  for (let i = 0; i < this.length; i++) {
+    if (func(this[i], i, this)) {
+      temp.push(this[i]);
+    }
+  }
+  return temp;
+};
+
+numbers = [1, 2, 3, 4, 5];
+
+const num=numbers.myFilter((num) => {
+  return num > 2;
+});
+
+console.log(num) //[ 3, 4, 5 ]
