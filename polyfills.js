@@ -151,7 +151,7 @@ console.log(addedResults); // Output: [3, 5, 7, 9]
 Finally, we log the addedResults array to the console, which contains the sums of each pair of numbers.
 */
 
-b)custom map implementation using anonymous function without using keyword function
+b)Polyfill map implementation using anonymous function without using keyword function
 
 Array.prototype.myMap = function (callback) {
   let temp = [];
@@ -239,7 +239,7 @@ The result remains the same as before, with each number in the numbers array bei
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
   
-5)//Custom filter
+5)//Polyfill filter
 Array.prototype.myFilter = function (func) {
   let temp = [];
   for (let i = 0; i < this.length; i++) {
@@ -257,3 +257,21 @@ const num=numbers.myFilter((num) => {
 });
 
 console.log(num) //[ 3, 4, 5 ]
+
+6)//Polyfill reduce
+Array.prototype.myReduce = function (callback, initialValue) {
+  let accumulator = initialValue;
+  for (let i = 0; i < this.length; i++) {
+    accumulator = accumulator
+      ? callback(accumulator, this[i], i, this)
+      : this[i];
+  }
+  return accumulator;
+};
+
+const numbers = [1, 2, 3, 4];
+
+const reduceResult = numbers.myReduce((acc, number) => {
+  return acc + number;
+}, 0);
+console.log("reduceResult", reduceResult); //reduceResult 10
