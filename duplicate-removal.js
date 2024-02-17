@@ -1,12 +1,12 @@
 let arr = [11, 24, 33, 33, 45, 45, 65];
 let uniqueArr=[...new Set(arr)]
-console.log("Duplicate removal new Set() way:", uniqueArr);
+console.log("(1) Duplicate removal new Set() way:", uniqueArr);
 
 uniqueArr=arr.filter((num,index,array)=>{ 
   return array.indexOf(num) === index;
 })
 
-console.log("Duplicate removal filter way:", uniqueArr);
+console.log("(2) Duplicate removal filter way:", uniqueArr);
 
 uniqueArr=arr.reduce((acc,num)=>{
   if(!acc.includes(num)){
@@ -15,7 +15,7 @@ uniqueArr=arr.reduce((acc,num)=>{
   return acc;
 },[])
 
-console.log("Duplicate removal reduce way:", uniqueArr)
+console.log("(3) Duplicate removal reduce way:", uniqueArr)
 
 let countObj = {};
 for (let num of arr) {
@@ -24,4 +24,4 @@ for (let num of arr) {
 
 uniqueArr = Object.keys(countObj).map(Number);
 
-console.log("Duplicate removal Hashmap object way:", uniqueArr);
+console.log("(4) Duplicate removal Hashmap object way:", uniqueArr);
