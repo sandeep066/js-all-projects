@@ -9,4 +9,10 @@ Button Re-enable: After fetching completes (either successfully or with an error
 Used optional chaining to In the displayRandomUser function to ensure that randomUser, 
 randomUser.address, and randomUser.company exist before accessing their properties.
 
+320–480px: Mobile devices
+481–768px: iPads, tablets
+769–1024px: Small screens, laptops
+1025–1200px: Desktops, large screens
+1201px and more: Extra large screens, TV
+
 These changes improve the robustness and user experience of code.
