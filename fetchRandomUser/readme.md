@@ -6,4 +6,7 @@ Error Message: If fetching fails, an alert is displayed to the user with a gener
 
 Button Re-enable: After fetching completes (either successfully or with an error), the "Fetch User" button is re-enabled (button.disabled = false). This allows users to fetch again if needed.
 
+Used optional chaining to In the displayRandomUser function to ensure that randomUser, 
+randomUser.address, and randomUser.company exist before accessing their properties.
+
 These changes improve the robustness and user experience of code.
