@@ -18,3 +18,40 @@
   width: 300px;
   text-align: center;
 }
+
+@media (max-width: 480px) {
+  h1 {
+    text-align: center;
+  }
+}
+
+/* Styles for iPads and tablets (481–768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 20px; /* Increase padding for tablets */
+  }
+}
+
+/* Styles for small screens and laptops (769–1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .fetch-user-btn {
+    font-size: 16px; /* Decrease button font size for smaller screens */
+  }
+  .display-user {
+    font-size: 24px; /* Increase font size for larger screens */
+  }
+}
+
+/* Styles for desktops and large screens (1025–1200px) */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .display-user {
+    font-size: 24px; /* Increase font size for larger screens */
+  }
+}
+
+/* Styles for extra large screens and TVs (1201px and more) */
+@media (min-width: 1201px) {
+  .container {
+    max-width: 1200px; /* Limit container width for very large screens */
+  }
+}
