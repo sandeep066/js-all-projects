@@ -2,9 +2,7 @@
 
 This document explains **how to pass data between pages in React Router v6+**  
 using clean **code snippets** and **minimal explanations**, suitable for interviews.
-
 ---
-
 ## Features Covered
 
 - ✨ Route State (useLocation)
@@ -13,8 +11,7 @@ using clean **code snippets** and **minimal explanations**, suitable for intervi
 - 🌐 Context / Redux
 - 💾 localStorage / sessionStorage
 - 🔐 Backend Fetch / Session
-- 🎯 Interview decision rules
-
+- 
 ---
 
 ## Method 1 — Route State (`useLocation`)
