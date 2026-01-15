@@ -1,6 +1,9 @@
 // App.jsx
 // React + React Router v6+
 // Accessible form (htmlFor + id), validation, submit → navigate with route state
+// State update uses → name
+// Label connection uses → id
+
 
 import React, { useState } from "react";
 import {
