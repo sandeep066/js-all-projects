@@ -1,78 +1,102 @@
-ONTINUED MARKDOWN, starting from Method 1 (which you already have) and APPENDING Method 2, 3, 4, 5, 6 in the same file.
+React Router – How Each Data Passing Method Is CREATED & USED
+✅ Method 1 — Route State (MOST COMMON for form submit)
+When to use
 
-👉 You can replace your file fully with this, or append from Method 2 onward.
+Form submit
 
-# React Router – Passing Data Between Pages (Snippets Only, Interview-Ready)
+Temporary SPA navigation data
 
-This cheat sheet shows **ALL common methods** to pass data between pages in **React Router v6+**.  
-Each method has **ONE code block** (send + receive together) and **clear notes**.
+No refresh needed
 
----
+How it is created
 
-## Method 1 — Route State (`useLocation`) ⭐ MOST COMMON INTERVIEW ANSWER
+React Router allows passing a state object during navigation.
 
-```jsx
-// SEND (form submit / programmatic navigation)
+How to SEND data
 navigate("/result", {
   state: { name: "Sandeep", age: 30 }
 });
 
-// RECEIVE
+
+(or)
+
+<Link to="/result" state={{ name: "Sandeep", age: 30 }} />
+
+How to RECEIVE data
 import { useLocation } from "react-router-dom";
 
 const { state } = useLocation();
 const name = state?.name;
 const age = state?.age;
 
+Key notes
 
-Notes
-
-❌ Lost on page refresh
+❌ Lost on refresh
 
 ❌ Not sharable
 
-❌ Not secure (client-controlled)
+❌ Not secure
 
-✅ Best for form submit → navigate → show data
+✅ Best interview answer for “form submit → navigate → show data”
 
-✅ Most expected interview answer
+✅ Method 2 — URL Params (WHO is the resource)
+When to use
 
-Method 2 — URL Params (useParams) — Resource Identity
-// ROUTE
+Resource identity (ID, slug)
+
+Page must work on refresh
+
+Sharable URLs
+
+How it is created
+
+Define params in the route path.
+
+How to SEND data
+<Link to="/user/Sandeep/30" />
+
+Route definition
 <Route path="/user/:name/:age" element={<User />} />
 
-// URL
-/user/Sandeep/30
-
-// RECEIVE
+How to RECEIVE data
 import { useParams } from "react-router-dom";
 
 const { name, age } = useParams();
 
-
-Notes
+Key notes
 
 ✅ Refresh-safe
 
-✅ Sharable & bookmarkable
+✅ Sharable
 
 ❌ Not secure (visible in URL)
 
-✅ Best for IDs, slugs, resource identity
+✅ Method 3 — Query Params (HOW to show the page)
+When to use
 
-Method 3 — Query Params (useSearchParams) — Filters / UI Behavior
-// URL
-/result?name=Sandeep&age=30
+Filters
 
-// RECEIVE
+Sorting
+
+Pagination
+
+Tabs
+
+How it is created
+
+Append data after ? in URL.
+
+How to SEND data
+<Link to="/result?name=Sandeep&age=30" />
+
+How to RECEIVE data
 import { useSearchParams } from "react-router-dom";
 
 const [params] = useSearchParams();
 const name = params.get("name");
 const age = params.get("age");
 
-
-Notes
+Key notes
 
 ✅ Refresh-safe
 
@@ -80,21 +104,32 @@ Notes
 
 ❌ Not secure
 
-✅ Best for filters, sorting, pagination, tabs
+✅ UI behavior control
 
-Method 4 — Context / Redux — App-wide UI State
-// STORE
+✅ Method 4 — Context / Redux (Global UI State)
+When to use
+
+Logged-in user UI
+
+Theme
+
+Sidebar state
+
+How it is created
+
+Store data in Context / Redux store.
+
+How to SEND (store) data
 setUser({ name: "Sandeep", age: 31 });
 
-// RECEIVE
+How to RECEIVE data
 import { useContext } from "react";
 
 const { user } = useContext(UserContext);
 const name = user?.name;
 const age = user?.age;
 
-
-Notes
+Key notes
 
 ❌ Lost on refresh
 
@@ -102,38 +137,53 @@ Notes
 
 ⚠️ Semi-safe (memory only)
 
-✅ Best for global UI state (theme, sidebar, auth UI)
+✅ Method 5 — localStorage / sessionStorage (Persistence)
+When to use
 
-Method 5 — localStorage / sessionStorage — Persistence
-// STORE
+Remember user preference
+
+Draft forms
+
+Non-sensitive data
+
+How to SEND (store) data
 localStorage.setItem(
   "user",
   JSON.stringify({ name: "Sandeep", age: 32 })
 );
 
-// RECEIVE
+How to RECEIVE data
 const raw = localStorage.getItem("user");
 const user = raw ? JSON.parse(raw) : null;
 
 const name = user?.name;
 const age = user?.age;
 
-
-Notes
+Key notes
 
 ✅ Refresh-safe
 
-❌ Not secure (browser-controlled)
+❌ Not secure
 
 ❌ Not sharable
 
-✅ Best for non-sensitive persistence
+✅ Method 6 — Backend Fetch / Session (SECURE)
+When to use
 
-Method 6 — Backend Fetch / Session — SECURE (Production)
-// URL
+Authenticated data
+
+Sensitive data
+
+Real production apps
+
+How it is created
+
+Backend stores session / validates token.
+
+How to SEND data
 /result/123
 
-// RECEIVE
+How to RECEIVE data
 import { useParams } from "react-router-dom";
 
 const { id } = useParams();
@@ -145,47 +195,20 @@ fetch(`/api/result/${id}`, { credentials: "include" })
     const age = data.age;
   });
 
-
-Notes
-
-✅ Refresh-safe
+Key notes
 
 ✅ Secure
 
+✅ Refresh-safe
+
 ✅ Backend-enforced authorization
 
-✅ Real-world Amazon / Flipkart pattern
+🎯 Interview Golden Rule (Memorize)
+WHO is it?        → URL Params
+HOW to show it?  → Query Params
+TEMP data?       → Route State
+App UI state?    → Context / Redux
+Need persistence?→ localStorage
+Need security?   → Backend Session
 
-Security Reality Check
-URL Params ❌ secure
-Query Params ❌ secure
-Route State ❌ secure
-Context / Redux ❌ secure
-localStorage ❌ secure
-Backend Session ✅ secure
-
-
-Frontend routing is NOT security.
-All authorization must be enforced on the backend.
-
-Final Decision Rule (MEMORIZE)
-WHO is it?              → URL Params
-HOW to show it?         → Query Params
-TEMP form data?         → Route State (useLocation().state)
-App UI state?           → Context / Redux
-Need persistence?       → localStorage / sessionStorage
-Need security?          → Backend Session
-
-
----
-
-### Why earlier it felt “not appended”
-Because **Markdown requires everything to be inside the same fenced block or same file**.  
-Now it **is appended correctly**, in order, with **no breaks**.
-
-If you want next:
-- 📌 **Ultra-short interview answer**
-- 📌 **Diagram (WHO / HOW / TEMP)**
-- 📌 **React Router trick questions**
-
-Just say 👍
+ick interview questions
