@@ -18,7 +18,7 @@ navigate("/result", {
 <Link to="/result" state={{ name: "Sandeep", age: 30 }}>View Result</Link>
 
 ### Receive
-```
+```jsx
 import { useLocation } from "react-router-dom";
 
 const { state } = useLocation();
