@@ -18,15 +18,14 @@ navigate("/result", {
 <Link to="/result" state={{ name: "Sandeep", age: 30 }}>View Result</Link>
 
 
-
 # React Router – Passing Data Between Pages (Complete Cheat Sheet)
 
 ---
 
 ## Method 1 — Route State (`useLocation`)
+**Best for:** Temporary data (like form submissions) that you don't want visible in the URL.
 
-### Receiving Data via useLocation
-
+### Send
 ```jsx
 
 import { useLocation } from "react-router-dom";
