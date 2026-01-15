@@ -8,7 +8,7 @@ This document summarizes **URL Params, Query Params, Navigation State (Route Sta
 
 | Method | React Router API | Visible in URL | Refresh safe | Sharable | Best use case |
 |---|---|---:|---:|---:|---|
-| **Method 1: Route State** | `Link state` + `useLocation().state` (or `useNavigate({ state })`) | ❌ | ❌ | ❌ | Temporary SPA-only navigation data |
+| **Route State** | `Link state` + `useLocation().state` (or `useNavigate({ state })`) | ❌ | ❌ | ❌ | Temporary SPA-only navigation data |
 | **URL Params** | `useParams()` | ✅ | ✅ | ✅ | Resource identity (IDs/slugs) |
 | **Query Params** | `useSearchParams()` | ✅ | ✅ | ✅ | Filters / tabs / sort / pagination |
 | **Global State** | Context / Redux | ❌ | ❌ | ❌ | App-wide UI state during session |
