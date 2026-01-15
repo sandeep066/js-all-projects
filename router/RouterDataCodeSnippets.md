@@ -24,5 +24,5 @@ import { useLocation } from "react-router-dom";
 const { state } = useLocation();
 const name = state?.name;
 const age = state?.age;
-```
+
 
