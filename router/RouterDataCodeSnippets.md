@@ -50,7 +50,7 @@ const age = state?.age;
 
 ### ✅ Most common interview answer for form submit
 
-## Method 2 — URL Params (useParams)
+## Method 2 — URL Params (`useParams`)
 
 Best for: Resource identity (ID, slug) that must survive refresh and be sharable.
 ### Send Data
@@ -69,7 +69,7 @@ import { useParams } from "react-router-dom";
 const { name, age } = useParams();
 ```
 
-## Method 3 — Query Params (useSearchParams)
+## Method 3 — Query Params (`useSearchParams`)
 
 Best for: Filters, sorting, pagination, tabs.
 ###  Send Data
