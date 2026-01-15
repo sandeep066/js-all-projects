@@ -29,8 +29,9 @@ const navigate = useNavigate();
 navigate("/result", {
   state: { name: "Sandeep", age: 30 }
 });
-
-// OR using Link
+```
+### OR using Link
+```
 <Link to="/result" state={{ name: "Sandeep", age: 30 }}>
   View Result
 </Link>
