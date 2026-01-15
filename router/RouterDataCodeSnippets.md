@@ -1,93 +1,49 @@
-# React Router – Passing Data Between Pages (Minimal Cheat Sheet)
+arkdown# React Router – Passing Data Between Pages (Minimal Cheat Sheet)
 
 ---
 
 ## Method 1 — Route State (`useLocation`)
 
 ### Send
-```js
+```jsx
+// Programmatic
 navigate("/result", {
   state: { name: "Sandeep", age: 30 }
 });
-or
 
-jsx
-Copy code
-<Link to="/result" state={{ name: "Sandeep", age: 30 }} />
-Receive
-js
-Copy code
-import { useLocation } from "react-router-dom";
+// Declarative
+<Link to="/result" state={{ name: "Sandeep", age: 30 }}>View Result</Link>
+ReceiveJavaScriptimport { useLocation } from "react-router-dom";
 
 const { state } = useLocation();
 const name = state?.name;
 const age = state?.age;
-Method 2 — URL Params (useParams)
-Route
-jsx
-Copy code
-<Route path="/user/:name/:age" element={<User />} />
-Send (URL)
-txt
-Copy code
-/user/Sandeep/30
-Receive
-js
-Copy code
-import { useParams } from "react-router-dom";
+Method 2 — URL Params (useParams)Route DefinitionJavaScript<Route path="/user/:name/:age" element={<User />} />
+Send (URL)GET /user/Sandeep/30ReceiveJavaScriptimport { useParams } from "react-router-dom";
 
 const { name, age } = useParams();
-Method 3 — Query Params (useSearchParams)
-Send (URL)
-txt
-Copy code
-/result?name=Sandeep&age=30
-Receive
-js
-Copy code
-import { useSearchParams } from "react-router-dom";
+Method 3 — Query Params (useSearchParams)Send (URL)GET /result?name=Sandeep&age=30ReceiveJavaScriptimport { useSearchParams } from "react-router-dom";
 
 const [params] = useSearchParams();
 const name = params.get("name");
 const age = params.get("age");
-Method 4 — Context / Redux
-Store
-js
-Copy code
-setUser({ name: "Sandeep", age: 31 });
-Receive
-js
-Copy code
-import { useContext } from "react";
+Method 4 — Context / ReduxStoreJavaScriptsetUser({ name: "Sandeep", age: 31 });
+ReceiveJavaScriptimport { useContext } from "react";
+import { UserContext } from "./UserContext";
 
 const { user } = useContext(UserContext);
 const name = user?.name;
 const age = user?.age;
-Method 5 — localStorage / sessionStorage
-Store
-js
-Copy code
-localStorage.setItem(
+Method 5 — localStorage / sessionStorageStoreJavaScriptlocalStorage.setItem(
   "user",
   JSON.stringify({ name: "Sandeep", age: 32 })
 );
-Receive
-js
-Copy code
-const raw = localStorage.getItem("user");
+ReceiveJavaScriptconst raw = localStorage.getItem("user");
 const user = raw ? JSON.parse(raw) : null;
 
 const name = user?.name;
 const age = user?.age;
-Method 6 — Backend Fetch / Session
-Send (URL)
-txt
-Copy code
-/result/123
-Receive
-js
-Copy code
-import { useParams } from "react-router-dom";
+Method 6 — Backend Fetch / SessionSend (URL)GET /result/123ReceiveJavaScriptimport { useParams } from "react-router-dom";
 
 const { id } = useParams();
 
@@ -97,39 +53,4 @@ fetch(`/api/result/${id}`, { credentials: "include" })
     const name = data.name;
     const age = data.age;
   });
-Decision Rule
-txt
-Copy code
-WHO → URL Params
-HOW → Query Params
-TEMP → Route State
-GLOBAL → Context / Redux
-PERSIST → localStorage
-SECURE → Backend
-Interview One-Liner
-txt
-Copy code
-Form submit → useNavigate + route state
-Refresh / security → params or backend
-yaml
-Copy code
-
----
-
-### ✅ This version is:
-- Clean
-- Minimal
-- Markdown-safe
-- Easy to revise later
-- Perfect as **personal notes or interview cheat sheet**
-
-If you want next:
-- 🔹 ultra-compact 1-page version  
-- 🔹 diagram version  
-- 🔹 Next.js comparison
-
-
-
-
-
-
+Decision Rule (Quick Reference)GoalMethodWHO is it?URL ParamsHOW to show it? (Filters)Query ParamsTEMP form data?Route StateGLOBAL UI state?Context / ReduxPERSIST on restart?localStorageSECURE sensitive data?Backend / API
