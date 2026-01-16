@@ -3,25 +3,52 @@
 
 Both are Web Storage APIs(in string both) used to store key–value data in the browser .
 
-| Feature         | sessionStorage | localStorage | IndexedDB            |
-| --------------- | -------------- | ------------ | -------------------- |
-| Storage type    | Key–value      | Key–value    | Database             |
-| Data type       | String only    | String only  | Any (objects, blobs) |
-| Async           | ❌ No           | ❌ No         | ✅ Yes                |
-| Thread blocking | ✅ Can block    | ✅ Can block  | ❌ Non-blocking       |
-| Lifetime        | Tab only       | Persistent   | Persistent           |
-| Scope           | Origin + tab   | Origin       | Origin               |
-| Size            | ~5 MB          | ~5–10 MB     | 100s of MB           |
-| Query support   | ❌ No           | ❌ No         | ✅ Yes                |
-| Transactions    | ❌ No           | ❌ No         | ✅ Yes                |
+| Feature                 | Cookies                           | sessionStorage        | localStorage           | IndexedDB      | Cache API          |
+| ----------------------- | --------------------------------- | --------------------- | ---------------------- | -------------- | ------------------ |
+| Primary purpose         | Server ↔ client state             | Temporary UI state    | Persistent preferences | App database   | Network caching    |
+| Scope                   | Same origin (+ path/domain rules) | Same origin + **tab** | Same origin            | Same origin    | Same origin        |
+| Lifetime                | Configurable (expires/max-age)    | Until tab close       | Until cleared          | Until cleared  | Until cleared      |
+| Sent with HTTP requests | ✅ **Yes (auto)**                  | ❌ No                  | ❌ No                   | ❌ No           | ❌ No               |
+| JavaScript accessible   | ⚠️ Yes / ❌ (HttpOnly)             | ✅ Yes                 | ✅ Yes                  | ✅ Yes          | ✅ Yes              |
+| Data type               | String                            | String                | String                 | Objects, blobs | Request / Response |
+| Size limit              | ~4 KB                             | ~5 MB                 | ~5–10 MB               | 100s of MB     | Large              |
+| API type                | Sync                              | Sync                  | Sync                   | Async          | Async              |
+| UI blocking             | Yes                               | Yes                   | Yes                    | ❌ No           | ❌ No               |
+| Query support           | ❌ No                              | ❌ No                  | ❌ No                   | ✅ Yes          | ❌ No               |
+| Offline support         | ❌                                 | ❌                     | ❌                      | ✅              | ✅                  |
 
+✅ When to Use WHAT (Golden Rule)
+Use Cookies when:
 
-When to use WHAT (golden rule)
+Server needs data automatically
+
+Authentication / session handling
+
+Security matters
+
+Examples
+
+Session ID
+
+Refresh token (HttpOnly)
+
+CSRF token
+
 Use sessionStorage when:
 
 Data is temporary
 
 Must die on tab close
+
+Per-tab isolation required
+
+Examples
+
+Checkout steps
+
+Unsaved form data
+
+One-time UI state
 
 Use localStorage when:
 
@@ -29,57 +56,72 @@ Data is small
 
 Simple preferences
 
-Needs persistence
+Needs persistence across tabs
 
-Use IndexedDB when:
+Examples
 
-Large data
-
-Offline apps
-
-Complex objects
-
-High-performance storage
-
-Real-world examples
-localStorage
-
-Dark mode
-
-Sidebar collapsed
+Dark / light mode
 
 Language preference
 
-sessionStorage
+Sidebar collapsed state
 
-Checkout step
+Use IndexedDB when:
 
-Unsaved form data
+Large or complex data
 
-One-time UI state
+Offline-first apps
 
-IndexedDB
+Needs querying & performance
+
+Examples
 
 Offline notes app
 
-PWA cache
-
-Chat message history
+Chat history
 
 Image / video storage
 
-Service Worker caches
+Use Cache API when:
 
-Security note (important)
+Caching network responses
 
-All three are JS-accessible
+PWA / offline support
 
-IndexedDB is not safer than localStorage for secrets
+Faster reloads
 
-Never store passwords or refresh tokens
+Examples
 
-Interview one-liner (perfect)
+JS / CSS / images
 
-sessionStorage and localStorage are synchronous string-based storage, while IndexedDB is an asynchronous, transactional, object-based database designed for large and complex data.
+API GET responses
 
-If you want next, I can explain why IndexedDB API feels complex and how libraries like Dexie simplify it — very useful in real projects.
+App shell caching
+
+🔐 Security Notes (Critical)
+
+❌ Never store secrets in:
+
+localStorage
+
+sessionStorage
+
+IndexedDB
+
+Cache API
+
+✅ Use HttpOnly cookies for auth tokens
+
+Cookies are the only storage auto-sent to server
+
+🎯 Interview One-Liners (Perfect)
+
+Cookies → server-controlled, auto-sent with requests
+
+sessionStorage → temporary, per-tab storage
+
+localStorage → small persistent preferences
+
+IndexedDB → async browser database
+
+Cache API → network request/response cache
