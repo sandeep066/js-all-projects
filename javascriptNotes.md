@@ -10,4 +10,4 @@ Both are Web Storage APIs(in string both) used to store key–value data in the 
 | Page reload        | ✅ Survives            | ✅ Survives          |
 | Browser restart    | ✅ Survives            | ❌ Lost              |
 | Max size           | ~5–10 MB               | ~5 MB               |
-| Scope              | Same origin            | Same origin + tab   |
+| Scope              | Same origin            | Same origin (protocol+host+port) + tab   |
