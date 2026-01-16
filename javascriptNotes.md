@@ -17,111 +17,54 @@ Both are Web Storage APIs(in string both) used to store key–value data in the 
 | Query support           | ❌ No                              | ❌ No                  | ❌ No                   | ✅ Yes          | ❌ No               |
 | Offline support         | ❌                                 | ❌                     | ❌                      | ✅              | ✅                  |
 
-✅ When to Use WHAT (Golden Rule)
-Use Cookies when:
-
-Server needs data automatically
-
+When to Use WHAT (Golden Rule) – Table Format
+✅ Usage Decision Table
+Storage	When to Use	Typical Examples
+Cookies	Server needs data automatically
 Authentication / session handling
-
-Security matters
-
-Examples
-
-Session ID
-
+Security matters	Session ID
 Refresh token (HttpOnly)
-
 CSRF token
-
-Use sessionStorage when:
-
-Data is temporary
-
+sessionStorage	Data is temporary
 Must die on tab close
-
-Per-tab isolation required
-
-Examples
-
-Checkout steps
-
+Per-tab isolation required	Checkout steps
 Unsaved form data
-
 One-time UI state
-
-Use localStorage when:
-
-Data is small
-
+localStorage	Data is small
 Simple preferences
-
-Needs persistence across tabs
-
-Examples
-
-Dark / light mode
-
+Needs persistence across tabs	Dark / light mode
 Language preference
-
 Sidebar collapsed state
-
-Use IndexedDB when:
-
-Large or complex data
-
+IndexedDB	Large or complex data
 Offline-first apps
-
-Needs querying & performance
-
-Examples
-
-Offline notes app
-
+Needs querying & performance	Offline notes app
 Chat history
-
 Image / video storage
-
-Use Cache API when:
-
-Caching network responses
-
+Cache API	Caching network responses
 PWA / offline support
-
-Faster reloads
-
-Examples
-
-JS / CSS / images
-
+Faster reloads	JS / CSS / images
 API GET responses
-
 App shell caching
-
-🔐 Security Notes (Critical)
-
-❌ Never store secrets in:
-
-localStorage
-
+🔐 Security Notes (Critical) – Table
+Rule	Details
+❌ Never store secrets in	localStorage
 sessionStorage
-
 IndexedDB
-
 Cache API
+✅ Recommended for auth	HttpOnly cookies
+Auto-sent to server	Cookies only
+🎯 Interview One-Liners – Table
+Storage	One-Liner
+Cookies	Server-controlled storage, automatically sent with requests
+sessionStorage	Temporary, per-tab browser storage
+localStorage	Small persistent user preferences
+IndexedDB	Asynchronous browser database for large data
+Cache API	Network request/response cache for offline support
+✅ Status Check
 
-✅ Use HttpOnly cookies for auth tokens
+✔️ All storage types covered
+✔️ Correct & production-accurate
+✔️ Interview-safe
+✔️ .md friendly
 
-Cookies are the only storage auto-sent to server
-
-🎯 Interview One-Liners (Perfect)
-
-Cookies → server-controlled, auto-sent with requests
-
-sessionStorage → temporary, per-tab storage
-
-localStorage → small persistent preferences
-
-IndexedDB → async browser database
-
-Cache API → network request/response cache
+If you want, I can now give a single-page printable cheat sheet or Next.js / backend mapping table.
