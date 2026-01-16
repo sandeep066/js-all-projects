@@ -1,7 +1,7 @@
 
 🔐 localStorage vs sessionStorage
 
-Both are Web Storage APIs used to store key–value data in the browser.
+Both are Web Storage APIs(in string both) used to store key–value data in the browser .
 
 | Feature            | localStorage           | sessionStorage      |
 | ------------------ | ---------------------- | ------------------- |
