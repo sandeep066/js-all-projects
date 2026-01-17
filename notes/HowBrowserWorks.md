@@ -55,7 +55,7 @@ Example (simplified):
 ```
 
 Why needed ?
-> All files are stored as bytes
+> All files are stored as bytes, 
 > CPU works on bytes, not text
 ---
 
@@ -110,7 +110,7 @@ Key points
 - Just a sequence of tokens
 
 Why needed
-> Parser can’t work with raw characters
+> Parser can’t work with raw characters, 
 > Tokens are meaningful units
 ---
 ## 5️⃣ Flat Token Stream
@@ -188,8 +188,9 @@ Why trees?
 - Trees enable updates
 - Trees enable rendering
 
--> document.querySelectorAll("h1") -> NodeList
--> document.getElementsByTagName("h1") -> HTMLCollection
+- `document.querySelectorAll("h1")` → **NodeList**
+- `document.getElementsByTagName("h1")` → **HTMLCollection**
+
 ---
 ## 8️⃣ Render Tree
 
