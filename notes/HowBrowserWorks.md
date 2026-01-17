@@ -4,36 +4,148 @@
 
 ---
 
-## COMPLETE END-TO-END FLOW (CROSS-VERIFIED)
+## Who Does This Work — Browser Engine or Rendering Engine?
 
-1️⃣ **File (HTML / CSS / JS)**  
-Source files written by the developer or fetched from the network.
+### Short Answer
+**Tokenization, parsing, DOM/CSSOM creation, render tree construction, layout, paint, and compositing are done by the _Rendering Engine_, which is a core part of the Browser Engine.**  
+They are **NOT** done by the JavaScript engine.
 
-2️⃣ **Raw Bytes (010101…)**  
-Files are read by the browser as binary data.
+---
 
-3️⃣ **Character Decoding (UTF-8, etc.)**  
-Bytes are converted into readable characters using encoding rules.
+## Clear Terminology (Interview-Safe)
 
-4️⃣ **Tokenization (Lexical Analysis)**  
-Characters are grouped into meaningful tokens (tags, text, symbols).
+| Term | What it is | Examples |
+|---|---|---|
+**Browser** | Full application | Chrome, Firefox, Safari |
+**Browser Engine** | Orchestrates subsystems | Chromium, Gecko |
+**Rendering Engine** | Parses HTML/CSS & renders pixels | Blink (Chrome), WebKit (Safari), Gecko |
+**JavaScript Engine** | Executes JavaScript only | V8, SpiderMonkey, JavaScriptCore |
 
-5️⃣ **Parsing (Syntax Analysis)**  
-Tokens are analyzed and structured according to language grammar.
+👉 The **Rendering Engine** handles the rendering pipeline.  
+👉 The **JavaScript Engine** only executes JS.
 
-6️⃣ **Tree Model Created (DOM / CSSOM / AST)**  
-Structured trees are built in memory for HTML, CSS, and JavaScript.
+---
 
-7️⃣ **Render Tree Construction**  
-DOM and CSSOM are combined to determine visible elements.
+## COMPLETE END-TO-END FLOW (CROSS-VERIFIED)  
+### (Mapped to Responsible Component + Proof)
 
-8️⃣ **Layout (Math Calculations)**  
-Exact size and position of each visible element is calculated.
+### 1️⃣ File (HTML / CSS / JS)
+- **Browser + OS I/O**
+- Files fetched from disk or network
 
-🔟 **Paint (Pixels on Screen)**  
-Browser converts layout info → pixels.
+---
 
-1️⃣1️⃣ **JavaScript Interaction**
+### 2️⃣ Raw Bytes (010101…)
+- **Browser**
+- Data read as binary streams
+
+---
+
+### 3️⃣ Character Decoding (UTF-8, etc.)
+- **Rendering Engine**
+- Converts bytes → characters using encoding rules
+
+**Proof:**  
+https://html.spec.whatwg.org/multipage/parsing.html#character-encoding
+
+---
+
+### 4️⃣ Tokenization (Lexical Analysis)
+- **Rendering Engine (HTML/CSS Tokenizers)**
+- Characters → tokens
+
+**Proof (Spec):**  
+https://html.spec.whatwg.org/multipage/parsing.html#tokenization
+
+**Real Browser Code:**  
+- Chromium (Blink):  
+  https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/html/parser/html_tokenizer.cc  
+- Firefox (Gecko):  
+  https://searchfox.org/mozilla-central/source/parser/html/nsHtml5Tokenizer.cpp
+
+---
+
+### 5️⃣ Parsing (Syntax Analysis)
+- **Rendering Engine (Parser / Tree Builder)**
+- Tokens → structured grammar
+
+**Proof:**  
+https://html.spec.whatwg.org/multipage/parsing.html#overview-of-the-parsing-model
+
+---
+
+### 6️⃣ Tree Model Created (DOM / CSSOM / AST)
+- **Rendering Engine**
+  - HTML → DOM
+  - CSS → CSSOM
+- **JavaScript Engine**
+  - JS → AST
+
+**Proof:**  
+- DOM Standard: https://dom.spec.whatwg.org/  
+- CSSOM Spec: https://drafts.csswg.org/cssom/
+
+---
+
+### 7️⃣ Render Tree Construction
+- **Rendering Engine**
+- Combines DOM + CSSOM
+- Filters invisible nodes (`display:none`)
+
+**Proof:**  
+https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#render-tree_construction
+
+---
+
+### 8️⃣ Layout (Math Calculations)
+- **Rendering Engine**
+- Calculates width, height, x/y positions (reflow)
+
+**Proof:**  
+https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#layout
+
+---
+
+### 9️⃣ Paint (Pixels on Screen)
+- **Rendering Engine (often GPU-assisted)**
+- Converts layout info → pixels
+
+**Proof:**  
+https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#paint
+
+---
+
+### 🔟 Compositing (Layer Assembly)
+- **Rendering Engine**
+- Combines painted layers
+- Optimizes scrolling, transforms, opacity
+
+**Proof:**  
+https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#compositing
+
+---
+
+### 1️⃣1️⃣ JavaScript Interaction
+- **JavaScript Engine executes JS**
+- **Rendering Engine exposes DOM APIs**
+- DOM/CSS mutations → trigger reflow/repaint/compositing
+
+**Proof:**  
+https://dom.spec.whatwg.org/
+
+---
+
+## One-Line Interview Answer
+
+**HTML/CSS parsing, DOM/CSSOM creation, render tree, layout, paint, and compositing are handled by the browser’s rendering engine—not the JavaScript engine.**
+
+---
+
+## Memory Hook
+
+> **JS engine runs code.  
+Rendering engine builds, lays out, paints, and composites the page.**
+
 
 ---
 ## 1️⃣ File (HTML / CSS / JS)
