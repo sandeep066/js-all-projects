@@ -579,9 +579,6 @@ nodes = document.querySelectorAll("div"); // explicit refresh
 
 - **[Firefox HTML Tokenizer Source]**  
   https://searchfox.org/mozilla-central/source/parser/html/nsHtml5Tokenizer.cpp
-
-
-
 ```
 
 
