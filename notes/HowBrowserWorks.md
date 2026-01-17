@@ -4,7 +4,7 @@
 
 ---
 
-## Who Does This Work — Browser Engine or Rendering Engine?
+## Who Does This Work (DOM creation and updates)  — Browser Engine or Rendering Engine?
 
 ### Short Answer
 - **Tokenization, parsing, DOM/CSSOM creation, render tree construction, layout, paint, and compositing are done by the _Rendering Engine_, which is a core part of the Browser Engine.**  
