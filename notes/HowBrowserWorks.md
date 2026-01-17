@@ -206,14 +206,14 @@ Result
 ## 4️⃣ Tokenization (Lexical Analysis)
 
 What happens
-- Characters are scanned and converted into tokens.
+- Characters are scanned and converted into meaningful tokens.
 
 Example input:
 ```
 <h1>Hello</h1>
 ```
 
-Tokenizer output (flat, no structure):
+Tokenizer output (flat token stream, no structure yet)
 ```
 StartTagToken("h1")
 CharacterToken("Hello")
@@ -227,23 +227,9 @@ Key points
 
 Why needed
 > Parser can’t work with raw characters, 
-> Tokens are meaningful units
+> Tokens are meaningful units that the parser can understand
 ---
-## 5️⃣ Flat Token Stream
-
-What it is
-- A queue / stream of tokens waiting to be parsed.
-
-Example:
-```
-[ StartTag(h1), Text(Hello), EndTag(h1) ]
-```
-
-Why “flat”?
-- Order exists
-- Structure does NOT
----
-## 6️⃣ Parsing (Syntax Analysis)
+## 5️⃣ Parsing (Syntax Analysis)
 
 What happens
 Parser:
@@ -263,7 +249,7 @@ Why needed
 - To validate structure
 - To auto-fix invalid HTML
 ---
-## 7️⃣ Tree Model (DOM / CSSOM / AST)
+## 6️⃣ Tree Model (DOM / CSSOM / AST)
 HTML → DOM
 ```
 document.body.children[0].tagName // "H1"
@@ -308,7 +294,7 @@ Why trees?
 - `document.getElementsByTagName("h1")` → **HTMLCollection**
 
 ---
-## 8️⃣ Render Tree
+## 7️⃣ Render Tree
 
 What happens
 - DOM + CSSOM are combined.
@@ -329,7 +315,7 @@ Rules
 - `display:none → removed`
 - `visibility:hidden → included (but invisible)`
 ---
-## 9️⃣ Layout (Math Calculations)
+## 8️⃣  Layout (Math Calculations)
 
 What happens
 Browser calculates:
@@ -352,7 +338,7 @@ Why expensive
 - Affects siblings
 - Triggers reflow
 ---
-## 🔟 Paint (Pixels on Screen)
+## 9️⃣ Paint (Pixels on Screen)
 
 What happens
 - Browser converts layout info → pixels.
@@ -371,6 +357,28 @@ Images
 
 Final result
 - You see actual content on screen.
+---
+## 🔟 Compositing (Layer Assembly)
+
+**What happens**
+- Painted layers are combined into the final visual output.
+- Layers are ordered and merged based on stacking context.
+
+**What it handles**
+- Scrolling
+- `transform`
+- `opacity`
+- `will-change`
+
+**Key points**
+- Often handled by the GPU
+- Does NOT trigger repaint or reflow
+- Improves performance and smooth animations
+
+**Why needed**
+- Allows efficient updates without re-painting everything
+- Enables smooth scrolling and animations
+
 ---
 ## 1️⃣1️⃣ JavaScript Interaction (Important Rules)
 Script Blocking
