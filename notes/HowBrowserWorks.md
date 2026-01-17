@@ -30,6 +30,10 @@ DOM and CSSOM are combined to determine visible elements.
 8️⃣ **Layout (Math Calculations)**  
 Exact size and position of each visible element is calculated.
 
+🔟 **Paint (Pixels on Screen)**
+ Browser converts layout info → pixels.
+
+1️⃣1️⃣ **JavaScript Interaction**
 
 ---
 ## 1️⃣ File (HTML / CSS / JS)
@@ -256,7 +260,7 @@ Images
 Final result
 - You see actual content on screen.
 ---
-1️⃣1️⃣ JavaScript Interaction (Important Rules)
+## 1️⃣1️⃣ JavaScript Interaction (Important Rules)
 Script Blocking
 - `<script>` pauses DOM parsing
 - JS can mutate DOM & CSSOM
