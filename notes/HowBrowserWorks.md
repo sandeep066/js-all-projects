@@ -187,6 +187,9 @@ Why trees?
 - Trees enable traversal
 - Trees enable updates
 - Trees enable rendering
+
+-> document.querySelectorAll("h1") -> NodeList
+-> document.getElementsByTagName("h1") -> HTMLCollection
 ---
 ## 8️⃣ Render Tree
 
@@ -252,6 +255,19 @@ Images
 Final result
 - You see actual content on screen.
 ---
+1️⃣1️⃣ JavaScript Interaction (Important Rules)
+Script Blocking
+- `<script>` pauses DOM parsing
+- JS can mutate DOM & CSSOM
+
+CSS blocks JS
+- JS execution waits for CSSOM
+- Browser must know styles before layout-affecting JS runs
+
+Why defer / async exist
+- Let HTML & CSS paint first
+- JS loads later → better performance
+---  
 ## 🔁 Repaints & Reflows (Important)
 
 Change color → repaint
@@ -274,3 +290,52 @@ Trees become pixels
 DOM APIs expose node trees, not text
 NodeList / HTMLCollection are just views of DOM
 ```
+NodeList vs HTMLCollection (Corrected & Verified)
+| API                       | Returns            |
+| ------------------------- | ------------------ |
+| `getElementsByTagName`    | **HTMLCollection** |
+| `getElementsByClassName`  | **HTMLCollection** |
+| `document.forms / images` | **HTMLCollection** |
+| `querySelectorAll`        | **NodeList**       |
+| `childNodes`              | **NodeList**       |
+
+| Feature          | HTMLCollection     | NodeList                    |
+| ---------------- | ------------------ | --------------------------- |
+| What it contains | Element nodes only | Any node type               |
+| Live updates     | ✅ Usually live     | `querySelectorAll` ❌ static |
+| Older API        | Yes                | Newer                       |
+| Iterable         | Partially          | Yes                         |
+
+- `Both are just “views” into the same DOM tree`
+
+| Component                 | Role               |
+| ------------------------- | ------------------ |
+| JS Engine (V8)            | Executes JS        |
+| Browser Engine            | Rendering & layout |
+| Runtime Environment       | Event loop, APIs   |
+| DOM                       | In-memory model    |
+| HTMLCollection / NodeList | Views into DOM     |
+```
+## OFFICIAL PROOF LINKS (AUTHORITATIVE)
+
+- **[HTML Tokenization – WHATWG HTML Living Standard]**  
+  https://html.spec.whatwg.org/multipage/parsing.html#tokenization
+
+- **[Start Tag Token Definition]**  
+  https://html.spec.whatwg.org/multipage/parsing.html#start-tag-token
+
+- **[Tokenizer → Tree Builder Separation (Parsing Model)]**  
+  https://html.spec.whatwg.org/multipage/parsing.html#overview-of-the-parsing-model
+
+- **[DOM Standard (Node, NodeList, HTMLCollection)]**  
+  https://dom.spec.whatwg.org/
+
+- **[Chromium HTML Tokenizer Source (Real Browser Code)]**  
+  https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/html/parser/html_tokenizer.cc
+
+- **[Firefox HTML Tokenizer Source]**  
+  https://searchfox.org/mozilla-central/source/parser/html/nsHtml5Tokenizer.cpp
+```
+
+
+
