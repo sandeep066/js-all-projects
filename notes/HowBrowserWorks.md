@@ -107,9 +107,10 @@ https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#layou
 
 ---
 
-### 9️⃣ Paint (Pixels on Screen)
-- **Rendering Engine (often GPU-assisted)**
-- Converts layout info → pixels
+## 9️⃣ Paint (Pixels on Screen)
+
+**Rendering Engine (often GPU-assisted)**  
+Converts layout information → painted pixels (layers).
 
 **Proof:**  
 https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#paint
