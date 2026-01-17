@@ -30,8 +30,8 @@ DOM and CSSOM are combined to determine visible elements.
 8️⃣ **Layout (Math Calculations)**  
 Exact size and position of each visible element is calculated.
 
-🔟 **Paint (Pixels on Screen)**
- Browser converts layout info → pixels.
+🔟 **Paint (Pixels on Screen)**  
+Browser converts layout info → pixels.
 
 1️⃣1️⃣ **JavaScript Interaction**
 
