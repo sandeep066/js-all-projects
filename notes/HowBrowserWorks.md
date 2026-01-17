@@ -341,29 +341,32 @@ Why expensive
 ---
 ## 9️⃣ Paint (Pixels on Screen)
 
-What happens
-- Browser converts layout info → pixels.
+**What happens**
+- Browser converts layout information into **painted layers (bitmaps)**.
+- Each visual part is drawn separately, not yet merged into a final frame.
 
-Example:
+**Example**
+
 ```
 (x=10,y=50,width=500,height=20,color=black)
 ```
-
-Paint operations:
+**Paint operations**
 - Text
 - Backgrounds
 - Borders
+- Images
 
-Images
+**Result of Paint**
+- Visual content is **drawn into individual layers**
+- These layers are **not yet the final screen image**
 
-Final result
-- You see actual content on screen.
 ---
+
 ## 🔟 Compositing (Layer Assembly)
 
 **What happens**
-- Painted layers are combined into the final visual output.
-- Layers are ordered and merged based on stacking context.
+- Previously painted layers are **assembled into the final frame**.
+- Layers are ordered, positioned, and merged based on stacking context.
 
 **What it handles**
 - Scrolling
@@ -373,12 +376,16 @@ Final result
 
 **Key points**
 - Often handled by the GPU
-- Does NOT trigger repaint or reflow
-- Improves performance and smooth animations
+- Does **NOT** trigger repaint or reflow
+- Works on already-painted layers only
 
 **Why needed**
-- Allows efficient updates without re-painting everything
-- Enables smooth scrolling and animations
+- Enables smooth animations and scrolling
+- Avoids re-painting everything for simple visual changes
+
+**Final result**
+- The **final image is produced and displayed on the screen**
+
 
 ---
 ## 1️⃣1️⃣ JavaScript Interaction (Important Rules)
