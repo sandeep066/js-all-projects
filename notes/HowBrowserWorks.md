@@ -11,6 +11,30 @@
 
 - They are **NOT** done by the JavaScript engine.
 
+###  DOM Standard (WHATWG)
+
+- **DOM is not part of JavaScript**
+- Official spec:  
+  https://dom.spec.whatwg.org/
+
+> “The DOM defines a platform-neutral model for documents and events.”
+
+- This specification is **implemented by browser rendering engines**, not by JavaScript engines.
+
+---
+
+### Browser Architecture (MDN)
+
+- Official documentation:  
+  https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work
+
+MDN clearly shows that the following are part of the **rendering pipeline**:
+
+- DOM construction
+- DOM mutation handling
+- Layout
+- Paint  
+
 ---
 
 ## Clear Terminology (Interview-Safe)
@@ -555,6 +579,9 @@ nodes = document.querySelectorAll("div"); // explicit refresh
 
 - **[Firefox HTML Tokenizer Source]**  
   https://searchfox.org/mozilla-central/source/parser/html/nsHtml5Tokenizer.cpp
+
+
+
 ```
 
 
