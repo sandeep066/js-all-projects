@@ -33,7 +33,7 @@ console.log(a); // 10 (unchanged)
 ---
 
 3️⃣ Non-Primitive Data Type (Object)
-JavaScript has only ONE non-primitive type: object
+> JavaScript has only ONE non-primitive type: object
 
 Everything below is an object internally:
 ```
@@ -110,7 +110,8 @@ Falsy Values (8) (for reference)
     undefined
     NaN
 ```
-Everything is truthy except the falsy values above flsy values
+Everything is truthy except above falsy values.
+
 ```
     true
     1
