@@ -208,6 +208,11 @@ if (inputName) {
 || → use this IF the first value fails
 
 ```
+```
+OR (||) → short-circuiting happens on TRUE
+AND (&&) → short-circuiting happens on FALSE
+
+```
 ---
 
 👉 Always returns one of the two
