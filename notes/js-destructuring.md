@@ -146,3 +146,10 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+```
+</details>
+
+---
+### Destructring old and new way- Objects and array
+<img width="773" height="325" alt="image" src="https://github.com/user-attachments/assets/dd4f29f7-fb33-4424-bcd3-2fd5dbd46e0d" />
+
