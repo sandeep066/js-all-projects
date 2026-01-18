@@ -73,7 +73,7 @@ console.log(obj1.x); // 2 (changed)
 📌 Interview Note
 > typeof null === "object" is a historical bug and still exists for backward compatibility.
 
-Stack vs Heap
+5) Stack vs Heap
 
 | Type      | Stored In                 |
 | --------- | ------------------------- |
@@ -87,7 +87,7 @@ let obj = { x: 1 } // heap
 ```
 ---
 
-Primitive vs Object :
+6) Primitive vs Object :
 
 | Feature     | Primitive | Object    |
 | ----------- | --------- | --------- |
@@ -98,7 +98,7 @@ Primitive vs Object :
 
 ---
 
-Falsy Values (8) (for reference)
+7) Falsy Values (8) (for reference)
 
 ```
     false
@@ -110,7 +110,7 @@ Falsy Values (8) (for reference)
     undefined
     NaN
 ```
-Everything is truthy except above falsy values.
+8) Everything is truthy except above falsy values.
 
 ```
     true
@@ -127,7 +127,7 @@ Everything is truthy except above falsy values.
 
 ```
 ---
-## `&&, ||, ?? Short-Circuiting (Interview Gold)`
+## 9) `&&, ||, ?? Short-Circuiting (Interview Gold)`
 
 **The `&&` operator acts like an `if`:**
 - If the first operand is **true**, evaluate and return the second.
@@ -137,13 +137,13 @@ Everything is truthy except above falsy values.
 
 
 
-### && (AND)
+### a) && (AND)
 
 ```
 false && "hello" // false
 true && "hello"  // "hello"
 ```
-### || (OR)
+### b) || (OR)
 
 **The `||` operator acts like an `if-else`:**
 - If the first operand is **truthy**, return it.
@@ -185,16 +185,30 @@ if (inputName) {
 } else {
   name = "Guest";
 }
+
 ```
 
 🧠 Why || feels like if-else but && does not
-| Operator | Has fallback? | Stops early? | Common use            |       |                |
-| -------- | ------------- | ------------ | --------------------- | ----- | -------------- |
-| `&&`     | ❌ No          | ✅ Yes        | Conditional execution |       |                |
-| `        |               | `            | ✅ Yes                 | ✅ Yes | Default values |
+
+| Operator | Has fallback? | Stops early? | Common use               |
+| -------- | ------------- | ------------ | ------------------------ |
+| `&&`     | ❌ No          | ✅ Yes        | Conditional execution    |
+| `||`     | ✅ Yes         | ✅ Yes        | Default / fallback value |
+
+
+
+🎯 One-Line Interview Answer
+> && is a conditional gate (like if without else), while || is a fallback selector (like if-else).
+
+```
+&& → do this ONLY IF condition is true  
+|| → use this IF the first value fails
+
+```
+---
 
 👉 Always returns one of the two
-?? (Nullish Coalescing)
+c) ?? (Nullish Coalescing)
 
 ```
 null ?? "default"     // "default"
