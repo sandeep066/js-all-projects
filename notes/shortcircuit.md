@@ -13,13 +13,13 @@
 
 | Type        | Example        |
 | ----------- | -------------- |
-| `string`    | `"hello"`      |
-| `number`    | `10`, `3.14`   |
-| `bigint`    | `100n`         |
-| `boolean`   | `true`         |
-| `undefined` | `undefined`    |
-| `null`      | `null`         |
-| `symbol`    | `Symbol("id")` |
+| 1)`string`    | `"hello"`      |
+| 2)`number`    | `10`, `3.14`   |
+| 3)`bigint`    | `100n`         |
+| 4)`boolean`   | `true`         |
+| 5)`undefined` | `undefined`    |
+| 6)`null`      | `null`         |
+| 7)`symbol`    | `Symbol("id")` |
 
 Example:
 
@@ -37,15 +37,15 @@ JavaScript has only ONE non-primitive type: object
 
 Everything below is an object internally:
 ```
-    {} Object
-    [] Array
-    function(){}
-    new Date()
-    new Map()
-    new Set()
-    RegExp
-    WeakMap, 
-    WeakSet
+    1) {} Object
+    2) [] Array
+    3) function(){}
+    4) new Date()
+    5) new Map()
+    6) new Set()
+    7) RegExp
+    8) WeakMap, 
+    9) WeakSet
 ```
 Exmaple:
 ```
@@ -98,7 +98,7 @@ Primitive vs Object :
 
 ---
 
-Falsy Values (for reference)
+Falsy Values (8) (for reference)
 
 ```
     false
