@@ -21,6 +21,7 @@
 | 6)`null`      | `null`         |
 | 7)`symbol`    | `Symbol("id")` |
 
+[Official dat types proof link] (https://tc39.es/ecma262/#sec-ecmascript-language-types)
 Example:
 
 ```
