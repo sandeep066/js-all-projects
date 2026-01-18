@@ -196,7 +196,7 @@ if (inputName) {
 | Operator | Has fallback? | Stops early? | Common use               |
 | -------- | ------------- | ------------ | ------------------------ |
 | `&&`     | ❌ No          | ✅ Yes        | Conditional execution    |
-| `||`     | ✅ Yes         | ✅ Yes        | Default / fallback value |
+| `\|\|`     | ✅ Yes         | ✅ Yes        | Default / fallback value |
 
 
 
