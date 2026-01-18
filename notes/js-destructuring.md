@@ -179,3 +179,99 @@ function getBook(id) {
 <img width="330" height="109" alt="image" src="https://github.com/user-attachments/assets/f3a001c5-b164-4cd0-a95c-8c1f6d5f1001" />
 
 ---
+1️⃣ Spread operator (...) → EXPANDS
+Used when?
+
+- Function call
+- Array literal
+- Object literal
+- 
+Example
+```
+const arr = [1, 2, 3];
+console.log(...arr); // 1 2 3
+
+Array copy
+const copy = [...arr];
+
+Object copy
+const obj = { a: 1 };
+const copy = { ...obj };
+```
+2️⃣ Rest operator (...) → COLLECTS
+
+Used when?
+
+- Function parameters
+- Destructuring (array / object)
+
+  
+ Example
+ ```
+Function example
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+
+Destructuring example
+const [a, ...rest] = [1, 2, 3];
+// a = 1, rest = [2, 3]
+
+```
+
+Rest vs arguments (classic)
+```
+// Rest parameters ...args (modern, real array)
+function test(...args) {
+  console.log(args);
+}
+
+test(1, 2, 3);
+---
+Key points
+✅ Real array
+✅ All array methods available
+✅ Works in arrow functions
+✅ Clean & predictable
+
+args.map(x => x * 2); // ✅ works
+
+
+// arguments (old, array-like)
+function test() {
+  console.log(arguments);
+}
+
+test(1, 2, 3);
+
+Key points
+
+❌ Not a real array
+❌ No map, filter, reduce
+❌ Does NOT work in arrow functions
+❌ Harder to read / legacy
+
+arguments.map(x => x); // ❌ error
+
+
+```
+
+| Feature         | `arguments`       | `...args` (rest) |
+| --------------- | ----------------- | ---------------- |
+| Type            | Array-like object | Real array       |
+| Array methods   | ❌                 | ✅                |
+| Arrow functions | ❌                 | ✅                |
+| ES version      | Old (ES5)         | Modern (ES6)     |
+| Readability     | Poor              | Clean            |
+| Recommended     | ❌                 | ✅                |
+
+---
+
+| Feature      | Spread          | Rest                  |
+| ------------ | --------------- | --------------------- |
+| Purpose      | Expand          | Collect               |
+| Position     | RHS             | LHS                   |
+| Used in      | Calls, literals | Params, destructuring |
+| Syntax       | `...value`      | `...name`             |
+| Must be last | ❌               | ✅                     |
+
