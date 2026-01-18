@@ -140,13 +140,13 @@ let obj = { x: 1 } // heap
 
 
 
-### a) && (AND)
+### A) && (AND)
 
 ```
 false && "hello" // false
 true && "hello"  // "hello"
 ```
-### b) || (OR)
+### B) || (OR)
 
 **The `||` operator acts like an `if-else`:**
 - If the first operand is **truthy**, return it.
@@ -211,7 +211,12 @@ if (inputName) {
 ---
 
 👉 Always returns one of the two
-c) ?? (Nullish Coalescing)
+
+### C) ?? (Nullish Coalescing)
+
+**The `??` (nullish coalescing) operator acts like a safe default check:**  
+- If the first operand is **`null` or `undefined`**, it returns the second value.  
+- Otherwise, it returns the first value.
 
 ```
 null ?? "default"     // "default"
@@ -219,3 +224,25 @@ null ?? "default"     // "default"
 ```
 
 ---
+Summary:
+
+```
+&&  → checks for false
+||  → checks for truthy
+??  → checks only for null / undefined
+```
+
+```
+false && "A"   // false
+true  && "A"   // "A"
+
+"JS" || "TS"   // "JS"
+""   || "TS"   // "TS"
+
+0    ?? 100    // 0
+null ?? 100    // 100
+```
+```
+&& and || use truthy/falsy checks, while ?? ignores falsy values and only checks for null or undefined.
+```
+
