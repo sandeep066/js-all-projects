@@ -153,3 +153,29 @@ function getBook(id) {
 ### Destructring old and new way- Objects and array
 <img width="773" height="325" alt="image" src="https://github.com/user-attachments/assets/dd4f29f7-fb33-4424-bcd3-2fd5dbd46e0d" />
 
+---
+
+### Rest operator at end for array
+
+<img width="826" height="135" alt="image" src="https://github.com/user-attachments/assets/9e3c58af-0793-4c49-a057-2fd1df9924e4" />
+
+---
+
+<img width="1187" height="315" alt="image" src="https://github.com/user-attachments/assets/426fed44-6917-4098-94f1-67411fe42f2f" />
+
+---
+
+### Spread operator on Array
+
+<img width="642" height="85" alt="image" src="https://github.com/user-attachments/assets/14a5a6a9-0f19-4856-a004-d6eafec9a64c" />
+
+---
+### Spread operator on Object [add new porpety by spreading individual specific object]
+
+<img width="573" height="76" alt="image" src="https://github.com/user-attachments/assets/89fda3d4-cbd9-4d28-9f66-e02e143b939f" />
+
+---
+### Update existing property in object using spread operator ( should be at end)
+<img width="330" height="109" alt="image" src="https://github.com/user-attachments/assets/f3a001c5-b164-4cd0-a95c-8c1f6d5f1001" />
+
+---
