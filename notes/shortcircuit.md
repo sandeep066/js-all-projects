@@ -1,5 +1,7 @@
 🔹 JavaScript Data Types — Complete Guide
 
+[Official data types proof link](https://tc39.es/ecma262/#sec-ecmascript-language-types)
+
 1️⃣ Primitive vs Non-Primitive (Overview)
 
 | Category          | Count            | Stored As | Mutable |
@@ -21,7 +23,7 @@
 | 6)`null`      | `null`         |
 | 7)`symbol`    | `Symbol("id")` |
 
-[Official dat types proof link] (https://tc39.es/ecma262/#sec-ecmascript-language-types)
+
 Example:
 
 ```
